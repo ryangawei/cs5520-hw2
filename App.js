@@ -13,7 +13,7 @@ export default function App() {
         screenOptions={{
           headerStyle: { backgroundColor: colorSchema.headerBackground },
           headerTintColor: colorSchema.headerText,
-          headerTitleStyle: { fontSize: 30 },
+          headerTitleStyle: { fontSize: 20 },
         }}
       >
         <Stack.Screen
