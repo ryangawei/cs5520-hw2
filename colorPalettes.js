@@ -1,4 +1,4 @@
-export const colorSchema = {
+export const colorPalettes = {
   // cancel: "red",
   // cardBackground: "#fff",
   // title: "#fff",
@@ -13,4 +13,5 @@ export const colorSchema = {
   itemBackground: "#a2d2ff",
   caloryBackground: "white",
   text: "#13005A",
+  buttonPressed: "#497174"
 }
