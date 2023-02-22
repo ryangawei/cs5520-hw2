@@ -22,7 +22,7 @@ export function getHeaderTitle(route) {
   }
 }
 
-export function Home() {
+export function HomeScreen() {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({

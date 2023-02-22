@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Home, getHeaderTitle } from "./components/Home";
+import { HomeScreen, getHeaderTitle } from "./components/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { colorPalettes } from "./colorPalettes";
 import PressableButton from './components/PressableButton';
 import { AntDesign } from '@expo/vector-icons';
+import EditEntryScreen from "./components/EditEntryScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,7 +22,7 @@ export default function App() {
       >
         <Stack.Screen
           name="Home"
-          component={Home}
+          component={HomeScreen}
           options={({ route }) => ({
             headerTitle: getHeaderTitle(route),
             headerRight: () => {
@@ -36,7 +37,11 @@ export default function App() {
               );
             },
           })}
-        ></Stack.Screen>
+        />
+        <Stack.Screen
+          name="EditEntry"
+          component={EditEntryScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
