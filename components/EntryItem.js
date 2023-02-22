@@ -4,9 +4,7 @@ import { colorPalettes } from '../colorPalettes';
 import { Entypo } from '@expo/vector-icons';
 
 
-export default function EntryItem({ item }) {
-  const [limit, setLimit] = useState(500);
-
+export default function EntryItem({ item, limit }) {
   return (
     <View style={styles.itemContainer}>
       <Text style={styles.description}>{item.description}</Text>
