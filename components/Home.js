@@ -4,6 +4,8 @@ import AllEntries from './AllEntries';
 import OverLimitEntries from './OverLimitEntries';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,11 +26,24 @@ export function getHeaderTitle(route) {
 export function Home() {
   return (
     <Tab.Navigator
-      screenOptions={{
+      screenOptions={({route}) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          if (route.name === 'AllEntries') {
+            iconName = focused
+              ? 'coffee'
+              : 'coffee-outline';
+            return <MaterialCommunityIcons name={iconName} size={size} color={color} />
+          } else if (route.name === 'OverLimitEntries') {
+            iconName = focused ? 'exclamationcircle' : 'exclamationcircleo';
+            return <AntDesign name={iconName} size={size} color={color} />
+          }
+        },
         headerShown: false
-      }}>
-      <Tab.Screen name="AllEntries" component={AllEntries} />
-      <Tab.Screen name="OverLimitEntries" component={OverLimitEntries} />
+      })}
+      >
+      <Tab.Screen name="AllEntries" options={{title: "All Entries"}} component={AllEntries} />
+      <Tab.Screen name="OverLimitEntries" options={{title: "Over-limit Entries"}} component={OverLimitEntries} />
     </Tab.Navigator>
   )
 }
