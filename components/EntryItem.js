@@ -1,16 +1,18 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import { useState } from 'react'
 import { colorPalettes } from '../colorPalettes';
 import { Entypo } from '@expo/vector-icons';
 
 
 export default function EntryItem({ item }) {
+  const [limit, setLimit] = useState(500);
+
   return (
     <View style={styles.itemContainer}>
       <Text style={styles.description}>{item.description}</Text>
       <View style={styles.caloryContainer}>
         <View style={styles.warningIcon}>
-          { item.calories > 500? <Entypo name="warning" size={24} color="yellow"/> : <></> }
+          { item.calories > limit? <Entypo name="warning" size={24} color="yellow"/> : <></> }
         </View>
         <View style={styles.calory}>
           <Text>{item.calories}</Text>
