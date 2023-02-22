@@ -2,11 +2,12 @@ import { View, Text, StyleSheet } from 'react-native'
 import { useState } from 'react'
 import { colorPalettes } from '../colorPalettes';
 import { Entypo } from '@expo/vector-icons';
+import PressableButton from './PressableButton';
 
 
-export default function EntryItem({ item, limit }) {
+export default function EntryItem({ item, limit, navigation }) {
   return (
-    <View style={styles.itemContainer}>
+    <PressableButton style={styles.itemContainer} onPress={() => {navigation.push("EditEntry")}}>
       <Text style={styles.description}>{item.description}</Text>
       <View style={styles.caloryContainer}>
         <View style={styles.warningIcon}>
@@ -16,7 +17,7 @@ export default function EntryItem({ item, limit }) {
           <Text>{item.calories}</Text>
         </View>
       </View>
-    </View>
+    </PressableButton>
   )
 }
 
