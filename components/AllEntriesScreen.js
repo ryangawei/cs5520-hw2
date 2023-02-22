@@ -34,7 +34,7 @@ export default function AllEntriesScreen({route, navigation}) {
   
   return (
     <View style={styles.container}>
-      <EntriesList entries={entries} limit={limit} navigation={navigation} />
+      <EntriesList entries={entries} limit={limit} />
     </View>
   )
 }

@@ -2,7 +2,7 @@ import { View, Text, ScrollView, StyleSheet } from "react-native";
 import React from "react";
 import EntryItem from './EntryItem';
 
-export default function EntriesList({ entries, limit, navigation }) {
+export default function EntriesList({ entries, limit }) {
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContentContainer}>
       {entries.map((e) => {
@@ -11,7 +11,6 @@ export default function EntriesList({ entries, limit, navigation }) {
             key={e.id}
             item={e}
             limit={limit}
-            navigation={navigation}
           />
         );
       })}

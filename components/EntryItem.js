@@ -3,11 +3,14 @@ import { useState } from 'react'
 import { colorPalettes } from '../colorPalettes';
 import { Entypo } from '@expo/vector-icons';
 import PressableButton from './PressableButton';
+import { useNavigation } from '@react-navigation/native';
 
 
-export default function EntryItem({ item, limit, navigation }) {
+export default function EntryItem({ item, limit }) {
+  const navigation = useNavigation();
+
   return (
-    <PressableButton style={styles.itemContainer} onPress={() => {navigation.push("EditEntry")}}>
+    <PressableButton style={styles.itemContainer} onPress={() => {navigation.navigate("EditEntry", {item: item})}}>
       <Text style={styles.description}>{item.description}</Text>
       <View style={styles.caloryContainer}>
         <View style={styles.warningIcon}>
