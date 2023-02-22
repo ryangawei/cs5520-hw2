@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import EntriesList from './EntriesList';
+import AllEntriesScreen from './AllEntriesScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -41,8 +41,8 @@ export function HomeScreen() {
         headerShown: false
       })}
       >
-      <Tab.Screen name="AllEntries" options={{title: "All Entries"}} component={EntriesList} />
-      <Tab.Screen name="OverLimitEntries" options={{title: "Over-limit Entries"}} initialParams={{ overLimitOnly: true }} component={EntriesList} />
+      <Tab.Screen name="AllEntries" options={{title: "All Entries"}} component={AllEntriesScreen} />
+      <Tab.Screen name="OverLimitEntries" options={{title: "Over-limit Entries"}} initialParams={{ overLimitOnly: true }} component={AllEntriesScreen} />
     </Tab.Navigator>
   )
 }
