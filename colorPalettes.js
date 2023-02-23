@@ -16,5 +16,6 @@ export const colorPalettes = {
   button: "white",
   buttonPressed: "#497174",
   editCardBackground: "white",
-  editButtonBackground: "grey",
+  cancelButtonBackground: "grey",
+  confirmButtonBackground: "blue",
 }

@@ -6,10 +6,23 @@ import { useNavigation } from '@react-navigation/native';
 import { colorPalettes } from "../colorPalettes";
 import PressableButton from "./PressableButton";
 import { checkItemInDB } from "../Firebase/firestoreHelper";
+import ConfirmModal from "./ConfirmModal";
 
 export default function EditCard({ item }) {
   const reviewed = item.reviewed ? item.reviewed : false;
   const navigation = useNavigation();
+  const [reviewModalVisible, setReviewModalVisible] = useState(false);
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+
+  function onReview() {
+    checkItemInDB(item.id); navigation.goBack();
+  }
+
+  function onDelete() {
+    // TODO: delete entry
+    navigation.goBack()
+  }
+
 
   return (
     <View style={[styles.container, styles.shadowProp]}>
@@ -17,18 +30,20 @@ export default function EditCard({ item }) {
       <Text style={styles.text}>Description: {item.description}</Text>
 
       <View style={styles.buttonContainer}>
-        <PressableButton style={styles.button}>
+        <PressableButton style={[styles.button, styles.deleteButton]} onPress={() => { setDeleteModalVisible(true); }}>
           <Feather name="trash" size={24} color={colorPalettes.button} />
         </PressableButton>
 
         {!reviewed ? (
-          <PressableButton style={styles.button} onPress={() => { checkItemInDB(item.id); navigation.goBack();}}>
+          <PressableButton style={[styles.button, styles.reviewButton]} onPress={() => { setReviewModalVisible(true); }}>
             <AntDesign name="check" size={24} color={colorPalettes.button} />
           </PressableButton>
         ) : (
           <></>
         )}
       </View>
+      <ConfirmModal modalVisible={deleteModalVisible} setModalVisible={setDeleteModalVisible} msg="Delete the entry?" onConfirm={onDelete} />
+      <ConfirmModal modalVisible={reviewModalVisible} setModalVisible={setReviewModalVisible} msg="Mark the entry as reviewed?" onConfirm={onReview} />
     </View>
   );
 }
@@ -51,8 +66,13 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginHorizontal: 15,
-    backgroundColor: colorPalettes.editButtonBackground,
     borderRadius: 5,
+  },
+  deleteButton: {
+    backgroundColor: colorPalettes.cancelButtonBackground,
+  },
+  reviewButton: {
+    backgroundColor: colorPalettes.confirmButtonBackground,
   },
   text: {
     fontSize: 18,
