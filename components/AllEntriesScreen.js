@@ -12,7 +12,7 @@ export default function AllEntriesScreen({route, navigation}) {
   const overLimitOnly = route.params && Object.hasOwn(route.params, 'overLimitOnly')? route.params.overLimitOnly : false;
 
   useEffect(() => {
-    const q = overLimitOnly? query(collection(db, "calorie_tracker"), where("calories", ">", limit)) : collection(db, "calorie_tracker");
+    const q = overLimitOnly? query(collection(db, "calorie_tracker"), where("calories", ">", limit), where("reviewed", "==", false)) : collection(db, "calorie_tracker");
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let entries = [];

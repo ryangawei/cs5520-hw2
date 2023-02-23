@@ -1,31 +1,36 @@
-import { View, Text, StyleSheet } from 'react-native'
-import { useState } from 'react'
-import { Feather } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import { colorPalettes } from '../colorPalettes';
-import PressableButton from './PressableButton';
+import { View, Text, StyleSheet, Modal } from "react-native";
+import { useState } from "react";
+import { Feather } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
+import { colorPalettes } from "../colorPalettes";
+import PressableButton from "./PressableButton";
+import { checkItemInDB } from "../Firebase/firestoreHelper";
 
 export default function EditCard({ item }) {
-  const reviewed = item.reviewed? item.reviewed : false;
+  const reviewed = item.reviewed ? item.reviewed : false;
+  const navigation = useNavigation();
 
   return (
     <View style={[styles.container, styles.shadowProp]}>
       <Text style={styles.text}>Calories: {item.calories}</Text>
       <Text style={styles.text}>Description: {item.description}</Text>
-      
+
       <View style={styles.buttonContainer}>
         <PressableButton style={styles.button}>
           <Feather name="trash" size={24} color={colorPalettes.button} />
         </PressableButton>
 
-        <PressableButton style={styles.button}>
-        <AntDesign name="check" size={24} color={colorPalettes.button} />
-        </PressableButton>
-        
+        {!reviewed ? (
+          <PressableButton style={styles.button} onPress={() => { checkItemInDB(item.id); navigation.goBack();}}>
+            <AntDesign name="check" size={24} color={colorPalettes.button} />
+          </PressableButton>
+        ) : (
+          <></>
+        )}
       </View>
-
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -36,7 +41,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
     borderRadius: 5,
     backgroundColor: colorPalettes.editCardBackground,
-    alignItems: "center"
+    alignItems: "center",
   },
   buttonContainer: {
     flexDirection: "row",
@@ -52,7 +57,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     marginVertical: 2,
-    color: colorPalettes.text
+    color: colorPalettes.text,
   },
   shadowProp:
     Platform.OS === "ios"
