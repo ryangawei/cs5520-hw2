@@ -32,7 +32,7 @@ export default function App() {
                     // console.log("Press top-right plus");
                   }}
                 >
-                  <AntDesign name="plus" size={24} color="white" />
+                  <AntDesign name="plus" size={24} color={colorPalettes.button} />
                 </PressableButton>
               );
             },
@@ -40,6 +40,7 @@ export default function App() {
         />
         <Stack.Screen
           name="EditEntry"
+          options={{headerTitle: "Edit Entry"}}
           component={EditEntryScreen}
         />
       </Stack.Navigator>

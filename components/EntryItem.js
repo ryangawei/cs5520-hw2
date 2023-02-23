@@ -10,7 +10,7 @@ export default function EntryItem({ item, limit }) {
   const navigation = useNavigation();
 
   return (
-    <PressableButton style={styles.itemContainer} onPress={() => {navigation.navigate("EditEntry", {item: item})}}>
+    <PressableButton style={[styles.itemContainer, styles.shadowProp]} onPress={() => {navigation.navigate("EditEntry", {item: item})}}>
       <Text style={styles.description}>{item.description}</Text>
       <View style={styles.caloryContainer}>
         <View style={styles.warningIcon}>
@@ -52,5 +52,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: 25,
     paddingVertical: 5,
-  }
+  },
+  shadowProp:
+    Platform.OS === "ios"
+      ? {
+          shadowColor: colorPalettes.shadowColor,
+          shadowOffset: { width: -2, height: 4 },
+          shadowOpacity: 0.2,
+          shadowRadius: 3,
+        }
+      : {
+          shadowColor: colorPalettes.shadowColor,
+          elevation: 5,
+        },
 });
