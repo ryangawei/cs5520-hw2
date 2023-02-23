@@ -5,7 +5,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
 import { colorPalettes } from "../colorPalettes";
 import PressableButton from "./PressableButton";
-import { checkItemInDB } from "../Firebase/firestoreHelper";
+import { checkItemInDB, deleteItemFromDB } from "../Firebase/firestoreHelper";
 import ConfirmModal from "./ConfirmModal";
 
 export default function EditCard({ item }) {
@@ -19,7 +19,8 @@ export default function EditCard({ item }) {
   }
 
   function onDelete() {
-    // TODO: delete entry
+    // Delete entry
+    deleteItemFromDB(item.id);
     navigation.goBack()
   }
 
