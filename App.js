@@ -6,6 +6,7 @@ import { colorPalettes } from "./colorPalettes";
 import PressableButton from './components/PressableButton';
 import { AntDesign } from '@expo/vector-icons';
 import EditEntryScreen from "./components/EditEntryScreen";
+import AddEntryScreen from "./components/AddEntryScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,13 +24,13 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={({ route }) => ({
+          options={({ navigation, route }) => ({
             headerTitle: getHeaderTitle(route),
             headerRight: () => {
               return (
                 <PressableButton
                   onPress={() => {
-                    // console.log("Press top-right plus");
+                    navigation.navigate("AddEntry");
                   }}
                 >
                   <AntDesign name="plus" size={24} color={colorPalettes.button} />
@@ -42,6 +43,11 @@ export default function App() {
           name="EditEntry"
           options={{headerTitle: "Edit Entry"}}
           component={EditEntryScreen}
+        />
+        <Stack.Screen
+          name="AddEntry"
+          options={{headerTitle: "Add An Entry"}}
+          component={AddEntryScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
