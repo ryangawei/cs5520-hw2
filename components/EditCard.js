@@ -32,12 +32,12 @@ export default function EditCard({ item }) {
 
       <View style={styles.buttonContainer}>
         <PressableButton style={[styles.button, styles.deleteButton]} onPress={() => { setDeleteModalVisible(true); }}>
-          <Feather name="trash" size={24} color={colorPalettes.button} />
+          <Feather name="trash" size={24} color={colorPalettes.buttonText} />
         </PressableButton>
 
         {!reviewed ? (
           <PressableButton style={[styles.button, styles.reviewButton]} onPress={() => { setReviewModalVisible(true); }}>
-            <AntDesign name="check" size={24} color={colorPalettes.button} />
+            <AntDesign name="check" size={24} color={colorPalettes.buttonText} />
           </PressableButton>
         ) : (
           <></>

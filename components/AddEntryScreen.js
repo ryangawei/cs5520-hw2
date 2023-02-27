@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   buttonText: {
+    fontWeight: "bold",
     color: colorPalettes.buttonText
   },
   resetButton: {
