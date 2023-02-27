@@ -3,6 +3,7 @@ import React from 'react'
 import { colorPalettes } from '../colorPalettes';
 
 export default function PressableButton({ style, onPress, children }) {
+  // TODO: add visual feedback
   return (
     <Pressable
       style={({ pressed }) => {
@@ -13,6 +14,12 @@ export default function PressableButton({ style, onPress, children }) {
         ];
       }}
       onPress={onPress}
+      android_ripple={
+        {
+          color: colorPalettes.buttonPressed,
+          // radius: 20
+        }
+      }
     >
       {children}
     </Pressable>
@@ -21,7 +28,5 @@ export default function PressableButton({ style, onPress, children }) {
 
 const styles = StyleSheet.create({
   buttonStyle: { justifyContent: "center"},
-  pressedStyle: {
-    backgroundColor: colorPalettes.buttonPressed
-  }
+  pressedStyle: { backgroundColor: colorPalettes.buttonPressed }
 })
