@@ -12,11 +12,11 @@ export default function EntryItem({ item, limit }) {
   return (
     <PressableButton style={[styles.itemContainer, styles.shadowProp]} onPress={() => {navigation.navigate("EditEntry", {item: item})}}>
       <Text style={styles.description}>{item.description}</Text>
-      <View style={styles.caloryContainer}>
+      <View style={styles.calorieContainer}>
         <View style={styles.warningIcon}>
           { item.calories > limit? <Entypo name="warning" size={24} color="yellow"/> : <></> }
         </View>
-        <View style={styles.calory}>
+        <View style={styles.calorie}>
           <Text>{item.calories}</Text>
         </View>
       </View>
@@ -42,10 +42,10 @@ const styles = StyleSheet.create({
   warningIcon: {
     paddingHorizontal: 5
   },
-  caloryContainer: {
+  calorieContainer: {
     flexDirection: "row",
   },
-  calory: {
+  calorie: {
     backgroundColor: colorPalettes.caloryBackground,
     borderRadius: 5,
     fontSize: 20,
