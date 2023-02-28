@@ -7,7 +7,7 @@ import { addItemToDB } from '../Firebase/firestoreHelper';
 
 
 export default function AddEntryScreen() {
-  const [calorie, setCalorie] = useState(0);
+  const [calorie, setCalorie] = useState("");
   const [description, setDescription] = useState("");
   const navigation = useNavigation();
 
@@ -18,13 +18,27 @@ export default function AddEntryScreen() {
       showInvalidAlert();
       return;
     }
-    const reviewed = calorie <= 500? true : false;
-    addItemToDB({calories: calorie, description: description, reviewed: reviewed});
+    else if (isNaN(calorie)) {
+      showNaNAlert();
+      return;
+    }
+    let calorieNumber = Number(calorie);
+    const reviewed = calorieNumber <= 500? true : false;
+    addItemToDB({calories: calorieNumber, description: description, reviewed: reviewed});
     navigation.goBack();
   }
 
   function showInvalidAlert() {
     Alert.alert('Invalid data', 'Your inputs cannot be empty', [
+      {
+        text: 'OK',
+        onPress: () => {console.log('Cancel Pressed')},
+      },
+    ])
+  }
+
+  function showNaNAlert() {
+    Alert.alert('Invalid number', 'Your number is invalid', [
       {
         text: 'OK',
         onPress: () => {console.log('Cancel Pressed')},
@@ -43,7 +57,7 @@ export default function AddEntryScreen() {
         <Text style={styles.text}>Calories</Text>
         <TextInput
         style={styles.textInput}
-        onChangeText={(text) => { setCalorie(Number(text)); }}
+        onChangeText={(text) => { setCalorie(text); }}
         value={calorie}
         keyboardType="numeric"
       />
